@@ -1,0 +1,10 @@
+<h1><%= @list.name %></h1>
+
+<%= simple_form_for @bookmark do |f| %>
+  <%= f.input :name %>
+  <%= f.association :movie %>
+  <%= f.association :list %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "back", lists_path, class: "btn btn-warning" %>
