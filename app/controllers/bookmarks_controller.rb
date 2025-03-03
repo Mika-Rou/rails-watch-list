@@ -1,23 +1,17 @@
 class BookmarksController < ApplicationController
 
-  def index
-    @bookmarks = Bookmark.all
-  end
-
-  def show
-    @bookmark = Bookmark.find(params[:id])
-  end
-
   def new
-    # We need @list in our `simple_form_for`
-    @list = List.find(params[:list_id])
-    @boorkmark = Bookmark.new
+    @bookmark = Bookmark.new
+    @movie = Movie.find(params[:movie_id])
   end
 
   def create
-    @bookmark = bookmark.new(bookmark_params)
+    @bookmark = Bookmark.new(bookmark_params)
+    @movie = Movie.find(params[:movie_id])
+    @bookmark.movie = @movie
+
     if @bookmark.save
-      edirect_to bookmark_path(@bookmark)
+      redirect_to list_path(@movie.list)
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,4 +22,5 @@ class BookmarksController < ApplicationController
   def bookmark_params
     params.require(:bookmark).permit(:comment)
   end
+
 end

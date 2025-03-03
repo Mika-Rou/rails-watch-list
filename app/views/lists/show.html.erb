@@ -1,10 +1,14 @@
 <h1><%= @list.name %></h1>
 
-<%= simple_form_for @bookmark do |f| %>
+<%= simple_form_for @list do |f| %>
   <%= f.input :name %>
-  <%= f.association :movie %>
-  <%= f.association :list %>
   <%= f.button :submit %>
 <% end %>
 
 <%= link_to "back", lists_path, class: "btn btn-warning" %>
+
+<!-- <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+
+<% if @article.photo.attached? %>
+  <%= image_tag cl_image_path(@article.photo.key, height: 300, crop: :fill) %>
+<% end %> -->
